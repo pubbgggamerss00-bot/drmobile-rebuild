@@ -15234,29 +15234,6 @@
 
     invoke-static/range {v1 .. v6}, Landroidx/compose/foundation/lazy/LazyListScope;->item$default(Landroidx/compose/foundation/lazy/LazyListScope;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function3;ILjava/lang/Object;)V
 
-    .line 346
-    new-instance v0, Lcom/example/ui/screens/SettingsAndSupportScreensKt$$ExternalSyntheticLambda12;
-
-    move/from16 v1, p2
-
-    move-object/from16 v10, p3
-
-    invoke-direct {v0, v1, v10}, Lcom/example/ui/screens/SettingsAndSupportScreensKt$$ExternalSyntheticLambda12;-><init>(ZLkotlin/jvm/functions/Function1;)V
-
-    const v1, 0x2b3ce50f
-
-    invoke-static {v1, v7, v0}, Landroidx/compose/runtime/internal/ComposableLambdaKt;->composableLambdaInstance(IZLjava/lang/Object;)Landroidx/compose/runtime/internal/ComposableLambda;
-
-    move-result-object v0
-
-    move-object v4, v0
-
-    check-cast v4, Lkotlin/jvm/functions/Function3;
-
-    move-object/from16 v1, p10
-
-    invoke-static/range {v1 .. v6}, Landroidx/compose/foundation/lazy/LazyListScope;->item$default(Landroidx/compose/foundation/lazy/LazyListScope;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function3;ILjava/lang/Object;)V
-
     .line 408
     new-instance v8, Lcom/example/ui/screens/SettingsAndSupportScreensKt$$ExternalSyntheticLambda13;
 
