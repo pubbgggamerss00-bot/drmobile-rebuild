@@ -4666,6 +4666,15 @@
     .line 913
     invoke-static {v7}, Landroidx/compose/runtime/ComposerKt;->sourceInformationMarkerEnd(Landroidx/compose/runtime/Composer;)V
 
+    # restore spilled sourceInfo registers (were written only in the removed Pro-tab block)
+    move-object/from16 v51, v37
+
+    move-object/from16 v52, v49
+
+    move-object/from16 v53, v38
+
+    move-object/from16 v54, v50
+
 
     .line 639
     sget-object v2, Landroidx/compose/ui/Alignment;->Companion:Landroidx/compose/ui/Alignment$Companion;

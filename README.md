@@ -36,7 +36,26 @@
 - `smali_classes2/com/example/ui/screens/HomeScreenKt.smali` (تب خرید، بنر و کلیک دراور)
 - `smali_classes2/com/example/ui/components/ComponentsKt.smali` (دکمه خرید دیالوگ)
 
-اسکریپت‌ها: `scripts/patch_smali.py` (تغییرات ۱ تا ۴) و `scripts/patch_remove_payment.py` (تغییر ۵).
+اسکریپت‌ها: `scripts/patch_smali.py` (تغییرات ۱ تا ۴)، `scripts/patch_remove_payment.py` (تغییر ۵)، `scripts/repack_v3.py` (بازساخت APK) و `scripts/audit_deletions.py` (بررسی صحت پچ‌ها).
+
+## 🐞 رفع کرش نسخه قبل (مهم)
+
+نسخه‌ی قبلی این ریپو هنگام باز شدن برنامه کرش می‌کرد. علت: هنگام حذف کدِ تب «خرید Pro» از `HomeScreen`، چند دستور (`move-object`) که مقادیر رجیسترهای `v51` تا `v54` را تعیین می‌کردند هم همراه آن کد حذف شده بودند، در حالی که کدِ باقی‌مانده (تب «اطلاعات») همان رجیسترها را می‌خواند؛ نتیجه‌اش خواندن رجیسترِ مقدار-نشدَه و کرش آنی در شروع برنامه بود.
+
+رفع: چهار دستور بازیابی رجیستر دقیقاً بعد از نقطه‌ی حذف اضافه شد:
+
+```smali
+move-object/from16 v51, v37
+move-object/from16 v52, v49
+move-object/from16 v53, v38
+move-object/from16 v54, v50
+```
+
+صحت بیلد جدید با روش‌های زیر تأیید شد:
+- مقایسه‌ی بایت‌به‌بایت `classes2.dex` جدید با خروجی baksmali (فقط همین ۴ دستور تفاوت دارد)
+- بررسی کامل ۸۲۰۸ کلاس داخل dex (هیچ کلاسی حذف یا اضافه نشده)
+- بررسی liveness همه‌ی رجیسترها در همه‌ی بخش‌های حذف‌شده (`scripts/audit_deletions.py`)
+- تأیید امضا (v1+v2+v3)، zipalign و تراز بودن `resources.arsc` و فایل‌های `lib/*.so`
 
 ## 📂 ساختار ریپو
 
